@@ -138,6 +138,6 @@ fi
 	-device "${NIC_MODEL}",netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
 	-smp 2,sockets=1,cores=2,threads=1 \
+	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
 	-mem-prealloc -mem-path /mnt/huge \
-	-drive if=virtio,file=/home/supaplex/usr/src/github-by-user/supaplextor/recycle-bin-of-tech-goodies/OpenWRT/openwrt-vm.qcow2,format=qcow2,cache=writeback \
-	${vfio_host:+-device vfio-pci,host="$vfio_host"}
+	-drive if=virtio,file=/home/supaplex/usr/src/github-by-user/supaplextor/recycle-bin-of-tech-goodies/OpenWRT/openwrt-vm.qcow2,format=qcow2,cache=writeback
