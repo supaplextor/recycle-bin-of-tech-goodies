@@ -1,4 +1,3 @@
-supaplex@sky:~/usr/src/github-by-user/supaplextor/recycle-bin-of-tech-goodies/Ubuntu/26.04-wireless-ap-test$ ./kvm.ubuntu.sh 
 preflight: guest_memory_mb=2048
 preflight: required_memlock_kb=2097152
 preflight: current_memlock_kb=262144
@@ -9,4 +8,4 @@ preflight: mem_path_candidate=/mnt/huge:selected
 preflight: vfio_device=0000:0a:00.0 present
 preflight: iommu_group=21
 qemu-system-x86_64: -device vfio-pci,host=0000:0a:00.0: group ID 21: KVM VFIO device isn't created yet
-qemu-system-x86_64: -device vfio-pci,host=0000:0a:00.0: vfio 0000:0a:00.0: failed to setup container for group 21: memory listener initialization failed: Region pc.ram: vfio_container_dma_map(0x555c85830650, 0x100000, 0x7ff00000, 0x7f914ff00000) = -12 (Cannot allocate memory)
+qemu-system-x86_64: -device vfio-pci,host=0000:0a:00.0: vfio 0000:0a:00.0: failed to setup container for group 21: memory listener initialization failed: Region pc.ram: vfio_container_dma_map(0x55717682f9b0, 0x100000, 0x7ff00000, 0x7f9cfff00000) = -12 (Cannot allocate memory)
