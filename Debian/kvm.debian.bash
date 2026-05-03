@@ -130,7 +130,7 @@ if [[ ${memory_args[0]} != -mem-path ]]; then
 	printf 'warning: no writable hugetlbfs mount found; using regular guest RAM\n' >&2
 fi
 
-~/bin/qemu-caviar --vm-name ubuntu-test -- \
+~/bin/qemu-caviar --vm-name debian-trixie -- \
 	-m 6G \
 	-cdrom debian-live-13.4.0-amd64-lxqt.iso \
 	-device "${NIC_MODEL}",netdev=net0 \
