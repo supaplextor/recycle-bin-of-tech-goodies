@@ -2,7 +2,6 @@
 
 set -eu
 
-DISK_IMAGE="${DISK_IMAGE:-ubuntu.dd}"
 NIC_MODEL="${NIC_MODEL:-e1000}"
 vfio_host="${VFIO_HOST:-0000:0a:00.0}"
 guest_memory_mb="${GUEST_MEMORY_MB:-2048}"
@@ -133,7 +132,6 @@ fi
 
 ~/bin/qemu-caviar --vm-name ubuntu-test -- \
 	-m 6G \
-	-drive file="${DISK_IMAGE}",if=ide,format=raw \
 	-cdrom ubuntu-26.04-live-server-amd64.iso \
 	-device "${NIC_MODEL}",netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
