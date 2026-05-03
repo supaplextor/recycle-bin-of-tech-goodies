@@ -4,7 +4,7 @@ set -eu
 
 NIC_MODEL="${NIC_MODEL:-e1000}"
 vfio_host="${VFIO_HOST:-0000:0a:00.0}"
-guest_memory_mb="${GUEST_MEMORY_MB:-2048}"
+guest_memory_mb="${GUEST_MEMORY_MB:-6144}"
 PREFLIGHT_ONLY="${PREFLIGHT_ONLY:-0}"
 
 memory_args=(-m "${guest_memory_mb}M" -mem-prealloc -mem-path /mnt/huge)
@@ -131,14 +131,10 @@ if [[ ${memory_args[0]} != -mem-path ]]; then
 fi
 
 ~/bin/qemu-caviar --vm-name ubuntu-test -- \
-	-m 6G \
 	-cdrom ubuntu-26.04-live-server-amd64.iso \
 	-device "${NIC_MODEL}",netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
 	-smp 2,sockets=1,cores=2,threads=1 \
-	-drive if=virtio,file=ubuntu.qcow2,format=qcow2,cache=writeback
-
-
-#	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
-#	"${memory_args[@]}" \
-#	-mem-prealloc -mem-path /mnt/huge \
+	"${memory_args[@]}" \
+	-drive if=virtio,file=ubuntu.qcow2,format=qcow2,cache=writeback \
+	${vfio_host:+-device vfio-pci,host="$vfio_host"}
