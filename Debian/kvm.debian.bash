@@ -132,13 +132,13 @@ fi
 
 ~/bin/qemu-caviar --vm-name ubuntu-test -- \
 	-m 6G \
-#	-cdrom ubuntu-26.04-live-server-amd64.iso \
+	-cdrom debian-live-13.4.0-amd64-lxqt.iso \
 	-device "${NIC_MODEL}",netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
 	-smp 2,sockets=1,cores=2,threads=1 \
+	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
 	-drive if=virtio,file=ubuntu.qcow2,format=qcow2,cache=writeback
 
 
-#	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
 #	"${memory_args[@]}" \
 #	-mem-prealloc -mem-path /mnt/huge \
