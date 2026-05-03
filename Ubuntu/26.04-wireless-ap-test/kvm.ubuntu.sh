@@ -2,7 +2,6 @@
 
 set -eu
 
-DISK_IMAGE="${DISK_IMAGE:-ubuntu.dd}"
 NIC_MODEL="${NIC_MODEL:-e1000}"
 vfio_host="${VFIO_HOST:-0000:0a:00.0}"
 guest_memory_mb="${GUEST_MEMORY_MB:-2048}"
@@ -131,13 +130,15 @@ if [[ ${memory_args[0]} != -mem-path ]]; then
 	printf 'warning: no writable hugetlbfs mount found; using regular guest RAM\n' >&2
 fi
 
-~/bin/qemu-caviar --vm-name wtfopenwrt -- \
-	"${memory_args[@]}" \
-	-drive file="${DISK_IMAGE}",if=ide,format=raw \
+~/bin/qemu-caviar --vm-name ubuntu-test -- \
+	-m 6G \
 	-cdrom ubuntu-26.04-live-server-amd64.iso \
 	-device "${NIC_MODEL}",netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
 	-smp 2,sockets=1,cores=2,threads=1 \
-	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
-	-mem-prealloc -mem-path /mnt/huge \
-	-drive if=virtio,file=/home/supaplex/usr/src/github-by-user/supaplextor/recycle-bin-of-tech-goodies/OpenWRT/openwrt-vm.qcow2,format=qcow2,cache=writeback
+	-drive if=virtio,file=ubuntu.qcow2,format=qcow2,cache=writeback
+
+
+#	${vfio_host:+-device vfio-pci,host="$vfio_host"} \
+#	"${memory_args[@]}" \
+#	-mem-prealloc -mem-path /mnt/huge \
