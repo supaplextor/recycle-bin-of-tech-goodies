@@ -1,0 +1,9 @@
+09:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 15)
+        DeviceName: Realtek RTL8111H LAN
+        Subsystem: ASUSTeK Computer Inc. Onboard RTL8111H Ethernet [1043:8677]
+        Kernel driver in use: r8169
+        Kernel modules: r8169
+0a:00.0 Network controller [0280]: Realtek Semiconductor Co., Ltd. RTL8851BE PCIe 802.11ax Wireless Network Controller [10ec:b851]
+        Subsystem: AzureWave Device [1a3b:6110]
+        Kernel driver in use: vfio-pci
+        Kernel modules: rtw89_8851be
