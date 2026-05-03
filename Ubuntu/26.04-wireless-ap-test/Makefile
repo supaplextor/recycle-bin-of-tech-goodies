@@ -5,7 +5,7 @@ REQUIRED_HUGEPAGES := $(shell echo $$(( ($(GUEST_MEMORY_MB) * 1024 + $(HUGEPAGE_
 REQUIRED_MEMLOCK_KB := $(shell echo $$(( $(GUEST_MEMORY_MB) * 1024 )))
 
 disk:
-	test -s ubuntu.dd || dd if=/dev/zero of=ubuntu.dd bs=1G count=0 seek=48
+	test -s ubuntu.qcow2 || qemu-img create -f qcow2 ubuntu.qcow2 64G
 
 preflight:
 	./kvm.ubuntu.sh --preflight

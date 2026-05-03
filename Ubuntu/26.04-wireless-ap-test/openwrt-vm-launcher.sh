@@ -33,13 +33,10 @@ if [[ ${memory_args[0]} != -mem-path ]]; then
 	printf 'warning: no writable hugetlbfs mount found; using regular guest RAM\n' >&2
 fi
 
-qemu-system-x86_64 \
-	-enable-kvm \
-	-machine accel=kvm \
-	-cpu host \
+~/bin/qemu-caviar --vm-name openwrt2 -- \
 	-smp 2,sockets=1,cores=2,threads=1 \
 	"${memory_args[@]}" \
-	-drive if=virtio,file=/home/supaplex/usr/src/github-by-user/supaplextor/recycle-bin-of-tech-goodies/OpenWRT/openwrt-vm.qcow2,format=qcow2,cache=writeback \
+	-drive if=virtio,file=openwrt-vm.qcow2,format=qcow2,cache=writeback \
 	-device virtio-net-pci,netdev=net0 \
 	-netdev bridge,id=net0,br=br0 \
 	${vfio_host:+-device vfio-pci,host="$vfio_host"}
