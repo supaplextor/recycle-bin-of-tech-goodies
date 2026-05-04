@@ -5,10 +5,10 @@ REQUIRED_HUGEPAGES := $(shell echo $$(( ($(GUEST_MEMORY_MB) * 1024 + $(HUGEPAGE_
 REQUIRED_MEMLOCK_KB := $(shell echo $$(( $(GUEST_MEMORY_MB) * 1024 )))
 
 disk:
-	test -s ubuntu.qcow2 || qemu-img create -f qcow2 ubuntu.qcow2 64G
+	test -s trixie.qcow2 || qemu-img create -f qcow2 trixie.qcow2 64G
 
 preflight:
-	./kvm.ubuntu.sh --preflight
+	./kvm.trixie.bash --preflight
 
 hugepages-info:
 	@echo "guest memory (MiB): $(GUEST_MEMORY_MB)"
@@ -24,7 +24,7 @@ hugepages-setup:
 	sudo mountpoint -q $(QEMU_MEM_PATH) || sudo mount -t hugetlbfs nodev $(QEMU_MEM_PATH)
 	sudo chgrp "$$(id -gn)" $(QEMU_MEM_PATH)
 	sudo chmod 1770 $(QEMU_MEM_PATH)
-	@echo "Done. Use: QEMU_MEM_PATH=$(QEMU_MEM_PATH) ./kvm.ubuntu.sh --preflight"
+	@echo "Done. Use: QEMU_MEM_PATH=$(QEMU_MEM_PATH) ./kvm.trixie.bash --preflight"
 
 run-hugepages:
 	QEMU_MEM_PATH=$(QEMU_MEM_PATH) GUEST_MEMORY_MB=$(GUEST_MEMORY_MB) ./kvm.ubuntu.sh
