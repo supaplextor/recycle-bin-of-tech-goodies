@@ -1,0 +1,43 @@
+root@sky:~# nmap jammy1 -v -n -p 22,1431,1434,1433,3306,5432
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-05-08 12:48 MST
+Warning: Hostname jammy1 resolves, but not to any IPv4 address. Try scanning with -6
+Failed to resolve "jammy1".
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.01 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+root@sky:~# nmap jammy1 -4 -v -n -p 22,1431,1434,1433,3306,5432
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-05-08 12:48 MST
+Warning: Hostname jammy1 resolves, but not to any IPv4 address. Try scanning with -6
+Failed to resolve "jammy1".
+Read data files from: /usr/bin/../share/nmap
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.01 seconds
+           Raw packets sent: 0 (0B) | Rcvd: 0 (0B)
+root@sky:~# nmap jammy1 -6 -v -n -p 22,1431,1434,1433,3306,5432
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-05-08 12:48 MST
+Initiating ND Ping Scan at 12:48
+Scanning jammy1 (fd08:891d:411b::f0c) [1 port]
+Completed ND Ping Scan at 12:48, 0.06s elapsed (1 total hosts)
+Initiating SYN Stealth Scan at 12:48
+Scanning jammy1 (fd08:891d:411b::f0c) [6 ports]
+Discovered open port 22/tcp on fd08:891d:411b::f0c
+Discovered open port 5432/tcp on fd08:891d:411b::f0c
+Discovered open port 1433/tcp on fd08:891d:411b::f0c
+Completed SYN Stealth Scan at 12:48, 0.03s elapsed (6 total ports)
+Nmap scan report for jammy1 (fd08:891d:411b::f0c)
+Host is up (0.0011s latency).
+
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+1431/tcp closed rgtp
+1433/tcp open   ms-sql-s
+1434/tcp closed ms-sql-m
+3306/tcp closed mysql
+5432/tcp open   postgresql
+MAC Address: 52:54:00:12:34:56 (QEMU virtual NIC)
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
+           Raw packets sent: 7 (456B) | Rcvd: 7 (444B)
+root@sky:~# 
