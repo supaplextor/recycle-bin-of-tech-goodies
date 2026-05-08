@@ -1,1 +1,3 @@
 misc screenshots
+
+at one point, the ipv4 dhcp binding was gone from the openwrt ap. Now that it's back, there's less to troubleshoot. Turns on listening on 0.0.0.0 means you only want ipv4 traffic...
